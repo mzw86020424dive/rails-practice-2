@@ -49,14 +49,14 @@ module Api
                     render json: { 
                     status: 'SUCCESS', 
                     message: 'Updated the member', 
-                    data: @member 
-                }
+                    data: @member
+                    }
                 else
                     render json: { 
                     status: 'SUCCESS', 
                     message: 'Not updated', 
                     data: @member.errors 
-                }
+                    }
                 end
             end
 
