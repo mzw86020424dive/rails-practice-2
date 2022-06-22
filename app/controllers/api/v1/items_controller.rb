@@ -14,7 +14,6 @@ module Api
 			end
 
 			def show
-				@item
 				render json: {
 					status: 'SUCCESS',
 					message: 'Loaded item',
@@ -69,11 +68,11 @@ module Api
 			private
 
 			def set_member
-				@member = Member.find_by(id: params[:id])
+				@member = Member.find(params[:id])
 			end
 
 			def set_item
-				@item = Item.find_by(id: params[:id])
+				@item = Item.find(params[:id])
 			end
 		end
 	end
