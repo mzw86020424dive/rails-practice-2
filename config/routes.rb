@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :members do
-        resources :favorites, only: [:create, :destroy]
+        get 'favorite_items'
       end
-      resources :items
+      resources :items do
+        get 'is_favorited_by'
+        get 'favorite_members'
+        resource :favorites, only: [:create, :destroy]
+      end
     end
   end
 end

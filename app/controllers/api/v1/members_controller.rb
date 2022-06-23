@@ -1,7 +1,7 @@
 module Api
     module V1       
         class MembersController < ApplicationController
-            before_action :set_member, only: [:show, :update, :destroy]
+            before_action :set_member, only: [:show, :update, :destroy, :favorite_items]
 
             def index
                 members = Member.all
@@ -60,10 +60,19 @@ module Api
                 end
             end
 
+            def favorite_items
+                favorite_items = @member.favorite_items
+                render json: {
+                    status: 'SUCCESS',
+                    message: 'Loaded favorite items',
+                    data: favorite_items
+                }
+            end
+
             private
 
             def set_member
-                @member = Member.find(params[:id])
+                @member = Member.find(params[:member_id])
             end
         end
     end
