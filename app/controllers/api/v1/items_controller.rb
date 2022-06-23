@@ -1,11 +1,11 @@
 module Api
 	module V1       
 		class ItemsController < ApplicationController
-			before_action :set_member, only: [:create]
+			before_action :set_member, only: [:create, :index]
 			before_action :set_item, only: [:show, :destroy, :update]
 
 			def index
-				items = Item.all
+				items = @member.items
 				render json: {
 					status: 'SUCCESS',
 					message: 'Loaded items',
@@ -14,10 +14,14 @@ module Api
 			end
 
 			def show
+				@member = @item.member
 				render json: {
 					status: 'SUCCESS',
 					message: 'Loaded item',
-					data: @item
+					data: {
+						item: @item,
+						member: @member
+					}
 				}
 			end
 
