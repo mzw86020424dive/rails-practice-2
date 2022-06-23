@@ -24,9 +24,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_053037) do
     t.string "name"
     t.string "text"
     t.bigint "member_id", null: false
+    t.bigint "tag_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_items_on_member_id"
+    t.index ["tag_id"], name: "index_items_on_tag_id"
   end
 
   create_table "members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -35,7 +37,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_053037) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "members"
   add_foreign_key "items", "members"
+  add_foreign_key "items", "tags"
 end

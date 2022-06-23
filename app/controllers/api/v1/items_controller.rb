@@ -29,6 +29,7 @@ module Api
 				item = Item.new(
 					name: params[:name],
 					text: params[:text],
+					tag: Tag.find(params[:tag_id]),
 					member: @member
 				)
 				if item.save

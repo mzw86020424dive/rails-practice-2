@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :member
+  belongs_to :tag
   has_many :favorites
   has_many :favorite_members, through: :favorites, source: :member
 
